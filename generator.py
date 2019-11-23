@@ -32,7 +32,21 @@ while len(home_list) < home_num:
         home_list.append(v)
 
 print(g)
+print(location_list)
 print(home_num)
 print(len(home_list))
 print(home_list)
+
+file = open("50.in", "w")
+file.write(str(location_num)+"\n")
+file.write(str(home_num)+"\n")
+file.writelines(["%s " % loc for loc in location_list])
+file.write("\n")
+file.writelines(["%s " % h for h in home_list])
+file.write("\n")
+file.write("0" + "\n")
+for loc1 in location_list:
+    for loc2 in location_list:
+        file.write(str(g.getEdgelen(loc1, loc2)) + " ")
+    file.write("\n")
 

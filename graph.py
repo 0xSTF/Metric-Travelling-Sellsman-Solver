@@ -44,7 +44,7 @@ class Graph(object):
 
     def getEdgelen(self, n1, n2):
         if n1 != n2:
-            if self.getVertex(n2) not in self.getVertex(n1).getNeighbor().keys:
+            if self.getVertex(n2) not in self.getVertex(n1).getNeighbor().keys():
                 return "x"
             else:
                 return self.getVertex(n1).getNeighbor()[self.getVertex(n2)]

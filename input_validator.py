@@ -4,8 +4,8 @@ sys.path.append('../..')
 import os
 import argparse
 import utils
-#import networkx as nx
-#import numpy as np
+import networkx as nx
+import numpy as np
 from student_utils import *
 
 # Change these if you want to allow files with different names and/or graph sizes
