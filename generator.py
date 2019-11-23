@@ -1,7 +1,7 @@
 from graph import *
 import random
 
-location_num = 50
+location_num = 200
 r = random.uniform(0.3, 0.5)
 home_num = round(r * location_num)
 
@@ -17,11 +17,11 @@ for i in range(len(location_list)):
     for j in range(len(location_list)):
         if i != j:
             indicator = random.random()
-            w = random.randint(6, 10)
+            w = random.randint(1001, 2000)
             if indicator <= 0.1:
                 g.addEdge(i, j, w)
     if len(g.getVertex(i).getNeighbor()) == 0:
-        w = random.randint(6, 10)
+        w = random.randint(1001, 2000)
         e = random.randint(0, location_num)
         g.addEdge(i, e, w)
 
@@ -37,7 +37,7 @@ print(home_num)
 print(len(home_list))
 print(home_list)
 
-file = open("50.in", "w")
+file = open("inputs/200.in", "w")
 file.write(str(location_num)+"\n")
 file.write(str(home_num)+"\n")
 file.writelines(["%s " % loc for loc in location_list])
