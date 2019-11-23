@@ -3,12 +3,22 @@ class Vertex(object):
         self.id = node
         self.neighbor = {}
 
+    def __str__(self):
+        return str(self.id)
+
+    def __repr__(self):
+        return str(self.id) + " " + str(self.neighbor.values())
+
     def addNeighbor(self, node, weight):
+        for i in self.neighbor.keys():
+            if i == node:
+                return
         self.neighbor[node] = weight
         node.neighbor[self] = weight
 
     def getNeighbor(self):
         return self.neighbor
+
 
 class Graph(object):
     def __init__(self):
@@ -27,10 +37,10 @@ class Graph(object):
     def addEdge(self, n1, n2, weight):
         if n1 != n2:
             if n1 not in self.vet_list:
-                self.addVertext(n1)
+                self.addVertex(n1)
             if n2 not in self.vet_list:
-                self.addVertext(n2)
-            self.vet_list[n1].addNeighbor(n1, n2, weight)
+                self.addVertex(n2)
+            self.vet_list[n1].addNeighbor(self.getVertex(n2), weight)
 
     def getEdgelen(self, n1, n2):
         if n1 != n2:
@@ -40,3 +50,7 @@ class Graph(object):
                 return self.getVertex(n1).getNeighbor()[self.getVertex(n2)]
         else:
             return "x"
+
+    def __str__(self):
+        print(self.size)
+        return str(self.vet_list)
