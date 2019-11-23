@@ -1,5 +1,5 @@
-import networkx as nx
-import numpy as np
+#import networkx as nx
+#import numpy as np
 
 
 def decimal_digits_check(number):
