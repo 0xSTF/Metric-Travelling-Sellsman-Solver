@@ -2,12 +2,19 @@ class Vertex(object):
     def __init__(self, node):
         self.id = node
         self.neighbor = {}
+        self.home = False
 
     def __str__(self):
         return str(self.id)
 
     def __repr__(self):
         return str(self.id) + " " + str(self.neighbor.values())
+
+    def makeHome(self):
+        self.home = True
+
+    def isHome(self):
+        return self.home
 
     def addNeighbor(self, node, weight):
         for i in self.neighbor.keys():
