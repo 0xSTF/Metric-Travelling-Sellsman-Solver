@@ -27,6 +27,27 @@ def solve(list_of_locations, list_of_homes, starting_car_location, adjacency_mat
     """
     pass
 
+#adj matrix is a 2d list
+def recoverGraph(list_of_locations, list_of_homes, adjacency_matrix): 
+	pass
+
+
+def prims(g, starting_car_location):
+	"""
+	return values: an MST, a list of leaf locations
+	"""
+	pass
+
+def dropOff(mst):
+	"""
+	takes in a graph and out puts: 
+		1. a reduced graph
+		2. a dictionary with key value pairs indicating drop off location and the 
+			key: dropoff location
+			value: a list of TA homes to go to
+	"""
+	pass
+
 """
 ======================================================================
    No need to change any code below this line
