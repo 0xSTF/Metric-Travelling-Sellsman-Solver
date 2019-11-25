@@ -40,7 +40,7 @@ def recoverGraph(list_of_locations, list_of_homes, adjacency_matrix):
     for i in range(len(list_of_locations)):
         g.addVertex(i)
         if list_of_locations[i] in list_of_homes:
-
+            g.getVertex(list_of_locations[i]).makeHome()
     for i in range(len(list_of_locations)):
         for j in range(len(adjacency_matrix[i])):
             w = adjacency_matrix[i][j]
@@ -49,15 +49,18 @@ def recoverGraph(list_of_locations, list_of_homes, adjacency_matrix):
     return g
 
 
-def dropOff(mst):
+def dropOff(mst, list_of_locations):
     """
-    takes in a graph and out puts:
+    takes in a graph and outputs:
         1. a reduced graph
         2. a dictionary with key value pairs indicating drop off location and the
             key: dropoff location
             value: a list of TA homes to go to
     """
-    pass
+    vertices = [mst.getVertex(i) for i in range(len(list_of_locations)) if mst.getVertex(i)]
+    leaves = [v for v in vertices if v.isLeaf]
+
+
 
 
 """

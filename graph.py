@@ -35,6 +35,8 @@ class Graph(object):
         return new
 
     def getVertex(self, node):
+        if node not in self.vet_list.keys():
+            return 0
         return self.vet_list[node]
 
     def addEdge(self, n1, n2, weight):
@@ -53,6 +55,15 @@ class Graph(object):
                 return self.getVertex(n1).getNeighbor()[self.getVertex(n2)]
         else:
             return "x"
+
+    def deleteLeaf(self, node):
+        v = self.getVertex(node)
+        if not v.ifLeaf():
+            return
+        v.neighbor
+        self.vet_list.pop(node)
+        self.size -= 1
+
 
     def __str__(self):
         print(self.size)
