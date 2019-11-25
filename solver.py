@@ -10,7 +10,6 @@ from student_utils import *
 from graph import *
 from prims import *
 
-
 """
 ======================================================================
   Complete the following function.
@@ -31,27 +30,37 @@ def solve(list_of_locations, list_of_homes, starting_car_location, adjacency_mat
         A dictionary mapping drop-off location to a list of homes of TAs that got off at that particular location
         NOTE: both outputs should be in terms of indices not the names of the locations themselves
     """
-    pass
+    g = recoverGraph(list_of_locations, list_of_homes, adjacency_matrix)
+    return g
 
 
 # adj matrix is a 2d list
 def recoverGraph(list_of_locations, list_of_homes, adjacency_matrix):
-    pass
+    g = Graph()
+    for i in range(len(list_of_locations)):
+        g.addVertex(i)
+        if list_of_locations[i] in list_of_homes:
+            g.getVertex(list_of_locations[i]).makeHome()
+    for i in range(len(list_of_locations)):
+        for j in range(len(adjacency_matrix[i])):
+            w = adjacency_matrix[i][j]
+            if w != 'x' & getEdge(i, j, w) != 'x':
+                addEdge(i, j, w)
+    return g
 
 
-#g is the return valur of recoverGraph()
-prims(g, starting_car_location):
-
-
-def dropOff(mst):
+def dropOff(mst, list_of_locations):
     """
-    takes in a graph and out puts:
+    takes in a graph and outputs:
         1. a reduced graph
         2. a dictionary with key value pairs indicating drop off location and the
             key: dropoff location
             value: a list of TA homes to go to
     """
-    pass
+    vertices = [mst.getVertex(i) for i in range(len(list_of_locations)) if mst.getVertex(i)]
+    leaves = [v for v in vertices if v.isLeaf]
+
+
 
 
 """
