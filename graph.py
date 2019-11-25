@@ -19,6 +19,9 @@ class Vertex(object):
     def getNeighbor(self):
         return self.neighbor
 
+    def isLeaf(self):
+        return len(self.neighbor) == 1
+
 
 class Graph(object):
     def __init__(self):
