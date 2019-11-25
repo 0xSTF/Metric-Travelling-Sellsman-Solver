@@ -19,6 +19,7 @@ def dijsktra(g, src, unvisited_homes):      # src: vertex id, unvisited_homes: l
     visited[src] = True
     v = src
     while distTo.peekitem()[0] not in unvisited_homes:
+        distTo.popitem()
         for i in g.getVertexNeighbor(v):
             if visited[i]:
                 continue
@@ -27,7 +28,17 @@ def dijsktra(g, src, unvisited_homes):      # src: vertex id, unvisited_homes: l
                 if new_dist < distTo[i]:
                     distTo[i] = new_dist
                     edgeTo[i] = v
-        
+        v = distTo.peekitem()[0]
+        visited[v] = True
+    home = distTo.popitem()[0]
+    path = []
+    total_weight = 0
+    while edgeTo[home] is not None:
+        path.append(home)
+        total_weight += g.getEdgelen(home, edgeTo[home])
+        home = edgeTo[home]
+    path.append(home)
+    return path, total_weight
 
 
 
