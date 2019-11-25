@@ -28,8 +28,8 @@ def solve(list_of_locations, list_of_homes, starting_car_location, adjacency_mat
     pass
 
 #adj matrix is a 2d list
-def recoverGraph(list_of_locations, list_of_homes, adjacency_matrix): 
-	pass
+def recoverGraph(list_of_locations, list_of_homes, adjacency_matrix):
+    pass
 
 
 def prims(g, starting_car_location):
