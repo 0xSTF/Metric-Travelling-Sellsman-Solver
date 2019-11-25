@@ -7,6 +7,9 @@ import argparse
 import utils
 
 from student_utils import *
+from graph import *
+from prims import *
+
 
 """
 ======================================================================
@@ -36,11 +39,8 @@ def recoverGraph(list_of_locations, list_of_homes, adjacency_matrix):
     pass
 
 
-def prims(g, starting_car_location):
-    """
-    return values: an MST, a list of leaf locations
-    """
-    pass
+#g is the return valur of recoverGraph()
+prims(g, starting_car_location):
 
 
 def dropOff(mst):
