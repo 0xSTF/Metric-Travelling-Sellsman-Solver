@@ -40,12 +40,12 @@ def recoverGraph(list_of_locations, list_of_homes, adjacency_matrix):
     for i in range(len(list_of_locations)):
         g.addVertex(i)
         if list_of_locations[i] in list_of_homes:
-            g.getVertex(list_of_locations[i]).makeHome()
+            g.getVertex(i).makeHome()
     for i in range(len(list_of_locations)):
         for j in range(len(adjacency_matrix[i])):
             w = adjacency_matrix[i][j]
-            if w != 'x' & getEdge(i, j, w) != 'x':
-                addEdge(i, j, w)
+            if w != 'x' and g.getEdgelen(i, j) != 'x':
+                g.addEdge(i, j, w)
     return g
 
 

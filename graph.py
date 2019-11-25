@@ -1,7 +1,7 @@
 class Vertex(object):
     def __init__(self, node):
         self.id = node
-        self.neighbor = {}
+        self.neighbor = {}      # key: vertex, value: weight
         self.home = False
 
     def __str__(self):
@@ -32,7 +32,7 @@ class Vertex(object):
 
 class Graph(object):
     def __init__(self):
-        self.vet_list = {}
+        self.vet_list = {}      # key: vertex id, value: vertex
         self.size = 0
 
     def addVertex(self, node):
@@ -45,6 +45,10 @@ class Graph(object):
         if node not in self.vet_list.keys():
             return 0
         return self.vet_list[node]
+
+    def getVertexNeighbor(self, node):
+        neighbors = self.getVertex(node).getNeighbor().keys()
+        return [i.id for i in neighbors]
 
     def addEdge(self, n1, n2, weight):
         if n1 != n2:
