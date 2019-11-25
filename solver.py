@@ -1,16 +1,19 @@
 import os
 import sys
+
 sys.path.append('..')
 sys.path.append('../..')
 import argparse
 import utils
 
 from student_utils import *
+
 """
 ======================================================================
   Complete the following function.
 ======================================================================
 """
+
 
 def solve(list_of_locations, list_of_homes, starting_car_location, adjacency_matrix, params=[]):
     """
@@ -27,26 +30,29 @@ def solve(list_of_locations, list_of_homes, starting_car_location, adjacency_mat
     """
     pass
 
-#adj matrix is a 2d list
-def recoverGraph(list_of_locations, list_of_homes, adjacency_matrix): 
-	pass
+
+# adj matrix is a 2d list
+def recoverGraph(list_of_locations, list_of_homes, adjacency_matrix):
+    pass
 
 
 def prims(g, starting_car_location):
-	"""
-	return values: an MST, a list of leaf locations
-	"""
-	pass
+    """
+    return values: an MST, a list of leaf locations
+    """
+    pass
+
 
 def dropOff(mst):
-	"""
-	takes in a graph and out puts: 
-		1. a reduced graph
-		2. a dictionary with key value pairs indicating drop off location and the 
-			key: dropoff location
-			value: a list of TA homes to go to
-	"""
-	pass
+    """
+    takes in a graph and out puts:
+        1. a reduced graph
+        2. a dictionary with key value pairs indicating drop off location and the
+            key: dropoff location
+            value: a list of TA homes to go to
+    """
+    pass
+
 
 """
 ======================================================================
@@ -58,6 +64,8 @@ def dropOff(mst):
 Convert solution with path and dropoff_mapping in terms of indices
 and write solution output in terms of names to path_to_file + file_number + '.out'
 """
+
+
 def convertToFile(path, dropoff_mapping, path_to_file, list_locs):
     string = ''
     for node in path:
@@ -76,11 +84,13 @@ def convertToFile(path, dropoff_mapping, path_to_file, list_locs):
         string += strDrop
     utils.write_to_file(path_to_file, string)
 
+
 def solve_from_file(input_file, output_directory, params=[]):
     print('Processing', input_file)
 
     input_data = utils.read_file(input_file)
-    num_of_locations, num_houses, list_locations, list_houses, starting_car_location, adjacency_matrix = data_parser(input_data)
+    num_of_locations, num_houses, list_locations, list_houses, starting_car_location, adjacency_matrix = data_parser(
+        input_data)
     car_path, drop_offs = solve(list_locations, list_houses, starting_car_location, adjacency_matrix, params=params)
 
     basename, filename = os.path.split(input_file)
@@ -98,11 +108,13 @@ def solve_all(input_directory, output_directory, params=[]):
         solve_from_file(input_file, output_directory, params=params)
 
 
-if __name__=="__main__":
+if __name__ == "__main__":
     parser = argparse.ArgumentParser(description='Parsing arguments')
-    parser.add_argument('--all', action='store_true', help='If specified, the solver is run on all files in the input directory. Else, it is run on just the given input file')
+    parser.add_argument('--all', action='store_true',
+                        help='If specified, the solver is run on all files in the input directory. Else, it is run on just the given input file')
     parser.add_argument('input', type=str, help='The path to the input file or directory')
-    parser.add_argument('output_directory', type=str, nargs='?', default='.', help='The path to the directory where the output should be written')
+    parser.add_argument('output_directory', type=str, nargs='?', default='.',
+                        help='The path to the directory where the output should be written')
     parser.add_argument('params', nargs=argparse.REMAINDER, help='Extra arguments passed in')
     args = parser.parse_args()
     output_directory = args.output_directory
