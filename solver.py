@@ -10,7 +10,6 @@ from student_utils import *
 from graph import *
 from prims import *
 
-
 """
 ======================================================================
   Complete the following function.
@@ -31,16 +30,23 @@ def solve(list_of_locations, list_of_homes, starting_car_location, adjacency_mat
         A dictionary mapping drop-off location to a list of homes of TAs that got off at that particular location
         NOTE: both outputs should be in terms of indices not the names of the locations themselves
     """
-    pass
+    g = recoverGraph(list_of_locations, list_of_homes, adjacency_matrix)
+    return g
 
 
 # adj matrix is a 2d list
 def recoverGraph(list_of_locations, list_of_homes, adjacency_matrix):
-    pass
+    g = Graph()
+    for i in range(len(list_of_locations)):
+        g.addVertex(i)
+        if list_of_locations[i] in list_of_homes:
 
-
-#g is the return valur of recoverGraph()
-prims(g, starting_car_location):
+    for i in range(len(list_of_locations)):
+        for j in range(len(adjacency_matrix[i])):
+            w = adjacency_matrix[i][j]
+            if w != 'x' & getEdge(i, j, w) != 'x':
+                addEdge(i, j, w)
+    return g
 
 
 def dropOff(mst):
