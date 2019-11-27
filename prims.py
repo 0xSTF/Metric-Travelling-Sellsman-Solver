@@ -4,7 +4,8 @@ import sys
 
 
 def prims(g, starting_car_location):
-    return
+    mst = Graph()
+    
 
 
 def dijsktra(g, src, unvisited_homes):      # src: vertex id, unvisited_homes: list of vertices ids
@@ -51,4 +52,6 @@ if __name__ == '__main__':
     print(hd["2"])
     print(hd.peekitem()[0])
     print(hd.popitem())
+    print(len(hd))
+    hd = heapdict()
     print(len(hd))
