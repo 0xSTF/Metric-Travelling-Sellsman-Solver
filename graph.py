@@ -39,10 +39,13 @@ class Graph(object):
         self.size = 0
 
     def addVertex(self, node):
-        self.size += 1
-        new = Vertex(node)
-        self.vet_list[node] = new
-        return new
+        if node in self.vet_list.keys():
+            return
+        else:
+            self.size += 1
+            new = Vertex(node)
+            self.vet_list[node] = new
+            return new
 
     def getVertex(self, node):
         if node not in self.vet_list.keys():
