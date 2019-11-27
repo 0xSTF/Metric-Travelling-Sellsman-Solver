@@ -29,6 +29,9 @@ class Vertex(object):
     def isLeaf(self):
         return len(self.neighbor) == 1
 
+    def getID(self):
+        return self.id
+
 
 class Graph(object):
     def __init__(self):
@@ -68,13 +71,19 @@ class Graph(object):
             return "x"
 
     def deleteLeaf(self, node):
+        """
+        recursively prune leaves until get to a non-leaf or TA's home
+        return its id
+        """
         v = self.getVertex(node)
-        if not v.ifLeaf():
-            return
-        v.neighbor
+        incident_v = self.getVertex(v.getNeighbor().keys()[0])
+        incident_v.getNeighbour().pop(v)
         self.vet_list.pop(node)
         self.size -= 1
-
+        if incident_v.isLeaf() and (not incident_v.isHome()):
+            return self.deleteLeaf(incident_v.getID())
+        else:
+            return incident_v.getID()
 
     def __str__(self):
         print(self.size)

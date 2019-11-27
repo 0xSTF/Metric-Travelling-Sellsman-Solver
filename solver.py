@@ -31,6 +31,7 @@ def solve(list_of_locations, list_of_homes, starting_car_location, adjacency_mat
         NOTE: both outputs should be in terms of indices not the names of the locations themselves
     """
     g = recoverGraph(list_of_locations, list_of_homes, adjacency_matrix)
+
     return g
 
 
@@ -49,18 +50,24 @@ def recoverGraph(list_of_locations, list_of_homes, adjacency_matrix):
     return g
 
 
-def dropOff(mst, list_of_locations):
+def dropOff(mst, list_of_locations, list_of_homes):
     """
     takes in a graph and outputs:
         1. a reduced graph
-        2. a dictionary with key value pairs indicating drop off location and the
+        2. a dictionary with key value pairs indicating drop off location
+            and the TAs who're dropped off
             key: dropoff location
-            value: a list of TA homes to go to
+            value: a list of TA homes to go to, up to two
     """
-    vertices = [mst.getVertex(i) for i in range(len(list_of_locations)) if mst.getVertex(i)]
-    leaves = [v for v in vertices if v.isLeaf]
-
-
+    leaf_nodes = [i for i in range(len(list_of_locations)) if mst.getVertex(i) and mst.getVertex(i).isLeaf]
+    # or leaf_nodes = [i for i in range(len(list_of_homes)) if mst.getVertex(i).isLeaf]
+    dropOff_and_homes = []
+    for l in leaf_nodes:
+        dropOff_loc = mst.deleteLeaf(l)
+        if dropOff_loc in list_of_homes:
+            dropOff_and_homes.append([dropOff_loc, dropOff_loc, l])
+        else:
+            dropOff_and_homes.append([dropOff_loc, l])
 
 
 """
