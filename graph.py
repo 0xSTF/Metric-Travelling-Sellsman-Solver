@@ -8,7 +8,7 @@ class Vertex(object):
         return str(self.id)
 
     def __repr__(self):
-        return str(self.id) + " " + str(self.neighbor.values())
+        return str(self.id) + " " + str(self.home) + " " + str(self.neighbor.values())
 
     def makeHome(self):
         self.home = True
