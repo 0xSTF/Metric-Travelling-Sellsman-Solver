@@ -50,24 +50,26 @@ def recoverGraph(list_of_locations, list_of_homes, adjacency_matrix):
     return g
 
 
-def dropOff(mst, list_of_locations, list_of_homes):
+def dropOff(mst, list_of_locations):
     """
     takes in a graph and outputs:
         1. a reduced graph
         2. a dictionary with key value pairs indicating drop off location
             and the TAs who're dropped off
             key: dropoff location
-            value: a list of TA homes to go to, up to two
+            value: a list of TA homes to go to
     """
     leaf_nodes = [i for i in range(len(list_of_locations)) if mst.getVertex(i) and mst.getVertex(i).isLeaf]
     # or leaf_nodes = [i for i in range(len(list_of_homes)) if mst.getVertex(i).isLeaf]
-    dropOff_and_homes = []
-    for l in leaf_nodes:
-        dropOff_loc = mst.deleteLeaf(l)
-        if dropOff_loc in list_of_homes:
-            dropOff_and_homes.append([dropOff_loc, dropOff_loc, l])
-        else:
-            dropOff_and_homes.append([dropOff_loc, l])
+    # assuming that all leaves must be home
+    dropOff_and_homes = {}
+    for leaf in leaf_nodes:
+        dropOff_loc = mst.deleteLeaf(leaf)
+        dropOff_and_homes.update({dropOff_loc: set.add(leaf)})
+        if mst.getVertex(dropOff_loc).isHome():
+            dropOff_and_homes.update({dropOff_loc: set.add(dropOff_loc)})
+    return mst, dropOff_and_homes
+
 
 
 """

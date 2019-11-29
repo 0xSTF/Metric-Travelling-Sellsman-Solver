@@ -3,6 +3,7 @@ class Vertex(object):
         self.id = node
         self.neighbor = {}      # key: vertex, value: weight
         self.home = False
+        self.dropOff = False
 
     def __str__(self):
         return str(self.id)
@@ -10,10 +11,22 @@ class Vertex(object):
     def __repr__(self):
         return str(self.id) + " " + str(self.neighbor.values())
 
+    def getID(self):
+        return self.id
+
+    def isLeaf(self):
+        return len(self.neighbor) == 1
+
     def makeHome(self):
         self.home = True
 
     def isHome(self):
+        return self.dropOff
+
+    def makeDropOff(self):
+        self.dropOff = True
+
+    def isDropOff(self):
         return self.home
 
     def addNeighbor(self, node, weight):
@@ -25,13 +38,6 @@ class Vertex(object):
 
     def getNeighbor(self):
         return self.neighbor
-
-    def isLeaf(self):
-        return len(self.neighbor) == 1
-
-    def getID(self):
-        return self.id
-
 
 class Graph(object):
     def __init__(self):
@@ -80,9 +86,10 @@ class Graph(object):
         incident_v.getNeighbour().pop(v)
         self.vet_list.pop(node)
         self.size -= 1
-        if incident_v.isLeaf() and (not incident_v.isHome()):
+        if incident_v.isLeaf() and (not incident_v.isHome()) and (not incident_v.isDropOff):
             return self.deleteLeaf(incident_v.getID())
         else:
+            incident_v.makeDropOff()
             return incident_v.getID()
 
     def __str__(self):
