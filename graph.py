@@ -21,13 +21,13 @@ class Vertex(object):
         self.home = True
 
     def isHome(self):
-        return self.dropOff
+        return self.home
 
     def makeDropOff(self):
         self.dropOff = True
 
     def isDropOff(self):
-        return self.home
+        return self.dropOff
 
     def addNeighbor(self, node, weight):
         for i in self.neighbor.keys():
