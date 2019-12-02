@@ -1,6 +1,7 @@
 from graph import *
 from heapdict import *
 import sys
+from solver import *
 
 
 def prims(g, starting_car_location):
@@ -105,3 +106,6 @@ if __name__ == '__main__':
     #path, weight = dijsktra(g, 0, unvisitedhomes)
     #print(path)
     #print(weight)
+    mst, dropoff = dropOff(mst, range(11))
+    print(mst)
+    print(dropoff)
