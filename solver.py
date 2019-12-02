@@ -62,16 +62,19 @@ def dropOff(mst, list_of_locations):
             key: dropoff location
             value: a list of TA homes to go to
     """
-    leaf_nodes = [i for i in range(len(list_of_locations)) if mst.getVertex(i) and mst.getVertex(i).isLeaf]
+    leaf_nodes = [l for l in range(len(list_of_locations)) if mst.getVertex(l) and mst.getVertex(l).isLeaf]
     # or leaf_nodes = [i for i in range(len(list_of_homes)) if mst.getVertex(i).isLeaf]
     # assuming that all leaves must be home
-    dropOff_and_homes = {}
-    for leaf in leaf_nodes:
-        dropOff_loc = mst.deleteLeaf(leaf)
-        dropOff_and_homes.update({dropOff_loc: set.add(leaf)})
-        if mst.getVertex(dropOff_loc).isHome():
-            dropOff_and_homes.update({dropOff_loc: set.add(dropOff_loc)})
-    return mst, dropOff_and_homes
+    d = {}
+    for l in leaf_nodes:
+        drop_loc = mst.deleteLeaf(l)
+        if drop_loc not in d.keys():
+            d[drop_loc] = set()
+        d[drop_loc] = d[drop_loc].add(l)
+        if mst.getVertex(drop_loc).isHome():
+            print("current dict: ", d)
+            d[drop_loc] = d[drop_loc].add(drop_loc)
+    return mst, d
 
 
 def dfs(visited, graph, node, path):
