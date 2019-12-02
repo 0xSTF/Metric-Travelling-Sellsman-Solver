@@ -85,8 +85,12 @@ class Graph(object):
         return its id
         """
         v = self.getVertex(node)
-        incident_v = self.getVertex(v.getNeighbor().keys()[0])
-        incident_v.getNeighbour().pop(v)
+        if len(v.getNeighbor()) == 0:
+            return v.getID()
+        for key in v.getNeighbor().keys():
+            incident_v = key
+        # incident_v = self.getVertex(v.getNeighbor().keys()[0])
+        incident_v.getNeighbor().pop(v)
         self.vet_list.pop(node)
         self.size -= 1
         if incident_v.isLeaf() and (not incident_v.isHome()) and (not incident_v.isDropOff):

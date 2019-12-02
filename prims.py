@@ -1,6 +1,7 @@
 from graph import *
 from heapdict import *
 import sys
+from solver import *
 
 
 def prims(g, starting_car_location):
@@ -75,3 +76,36 @@ def dijsktra(g, src, unvisited_homes):  # src: vertex id, unvisited_homes: list 
     path.append(home)
     return path, total_weight
 
+
+if __name__ == '__main__':
+    g = Graph()
+    for i in range(11):
+        g.addVertex(i)
+    g.addEdge(0,1,4)
+    g.addEdge(1,2,8)
+    g.addEdge(2,9,5)
+    g.addEdge(9,3,4)
+    g.addEdge(1,3,5)
+    g.addEdge(3,4,7)
+    g.addEdge(4,10,4)
+    g.addEdge(3,10,6)
+    g.addEdge(0,5,5)
+    g.addEdge(0,8,7)
+    g.addEdge(7,8,6)
+    g.addEdge(5,7,8)
+    #g.getVertex(0).makeHome()
+    g.getVertex(9).makeHome()
+    g.getVertex(4).makeHome()
+    g.getVertex(10).makeHome()
+    g.getVertex(7).makeHome()
+    g.getVertex(8).makeHome()
+    print(g)
+    mst = prims(g, 0)
+    print(mst)
+    #unvisitedhomes = [9, 4, 10, 7, 8]
+    #path, weight = dijsktra(g, 0, unvisitedhomes)
+    #print(path)
+    #print(weight)
+    mst, dropoff = dropOff(mst, range(11))
+    print(mst)
+    print(dropoff)
