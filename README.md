@@ -1,6 +1,7 @@
-# Project Title
+# Fall-2019-CS170-UCBerkeley-Project
 
-One Paragraph of project description goes here
+This project solves a metric TSP problem on incomplete graphs with approximation factor of 2.0 (usually better empirically). 
+Link to project spec:
 
 ## Getting Started
 
