@@ -50,19 +50,13 @@ Explain what these tests test and why
 Give an example
 ```
 
-
-## Built With
-
-* [Dropwizard](http://www.dropwizard.io/1.0.2/docs/) - The web framework used
-* [Maven](https://maven.apache.org/) - Dependency Management
-* [ROME](https://rometools.github.io/rome/) - Used to generate RSS Feeds
-
-
 ## Authors
 
-* **Billie Thompson** - *Initial work* - [PurpleBooth](https://github.com/PurpleBooth)
+* **Jinting Li** - [StefStroke](https://github.com/StefStroke)
 
-See also the list of [contributors](https://github.com/your/project/contributors) who participated in this project.
+* **Boyuan Ma** - [jerrymby](https://github.com/jerrymby)
+
+See also the list of [contributors](https://cs170.org/staff/) - CS170 UC Berkeley Course Stuff and instrcutors
 
 
 ## Acknowledgments
