@@ -80,14 +80,13 @@ def drop_off(min_tree, list_of_locations):
     return min_tree, d
 
 
-def pre_order(tree, src):   # src: vertex id
-    path = []
+def pre_order(tree, src, path):   # src: vertex id
     v = tree.getVertex(src)
     path.append(src)
     for n in v.getNeighbor().keys():
         if n.getID() not in path:
-            pre_order(tree, n.getID())
-    return path
+            pre_order(tree, n.getID(), path)
+    return
 
 
 def parse_path(mst1, path1):
