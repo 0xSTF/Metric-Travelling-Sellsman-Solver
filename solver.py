@@ -30,23 +30,24 @@ def solve(list_of_locations, list_of_homes, starting_car_location, adjacency_mat
         A dictionary mapping drop-off location to a list of homes of TAs that got off at that particular location
         NOTE: both outputs should be in terms of indices not the names of the locations themselves
     """
-    graph = recover_graph(list_of_locations, list_of_homes, adjacency_matrix)
     starting_index = list_of_locations.index(starting_car_location)
-    mst1 = prims(graph, starting_index)
-    mst2, d = drop_off(mst1, list_of_locations)
+    graph = recover_graph(list_of_locations, list_of_homes, adjacency_matrix, starting_index)
+    mst = prims(graph, starting_index)
+    d = drop_off(mst, list_of_locations, list_of_homes)
     path1 = []
-    pre_order(mst2, starting_index, path1)
+    pre_order(mst, starting_index, path1)
     path2 = parse_path(graph, path1)  # input graph or mst1 or mst 2 or doesn't matter?
     return path2, d
 
 
 # adj matrix is a 2d list
-def recover_graph(list_of_locations, list_of_homes, adjacency_matrix):
+def recover_graph(list_of_locations, list_of_homes, adjacency_matrix, starting_index):
     g = Graph()
     for i in range(len(list_of_locations)):
         g.addVertex(i)
         if list_of_locations[i] in list_of_homes:
             g.getVertex(i).makeHome()
+    g.getVertex(starting_index).makeSrc()
     for i in range(len(list_of_locations)):
         for j in range(len(list_of_locations)):
             w = adjacency_matrix[i][j]
@@ -55,7 +56,7 @@ def recover_graph(list_of_locations, list_of_homes, adjacency_matrix):
     return g
 
 
-def drop_off(min_tree, list_of_locations):
+def drop_off(min_tree, list_of_locations, list_of_homes):
     """
     takes in a graph and outputs:
         1. a reduced graph
@@ -73,15 +74,24 @@ def drop_off(min_tree, list_of_locations):
     d = {}
     for l in leaf_nodes:
         drop_loc = min_tree.deleteLeaf(l)
+        if drop_loc is None:
+            continue
         if drop_loc not in d.keys():
             d[drop_loc] = set()
         d[drop_loc].add(l)
         if min_tree.getVertex(drop_loc).isHome():
             # print("current dict: ", d)
             d[drop_loc].add(drop_loc)
+    for h in list_of_homes:
+        h_id = list_of_locations.index(h)
+        if h_id in min_tree.vet_list.keys():
+            if h_id not in d.keys():
+                d[h_id] = set()
+                d[h_id].add(h_id)
     for key in d.keys():
         d[key] = list(d[key])
-    return min_tree, d
+
+    return d
 
 
 def pre_order(tree, src, path):  # src: vertex id

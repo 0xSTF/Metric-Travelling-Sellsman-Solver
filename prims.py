@@ -11,6 +11,7 @@ def prims(g, starting_car_location):
     distTo = heapdict()
     edgeTo = {}
     mst.addVertex(starting_car_location)
+    mst.getVertex(starting_car_location).makeSrc()
     visited.append(starting_car_location)
     if g.getVertex(starting_car_location).isHome():
         mst.getVertex(starting_car_location).makeHome()

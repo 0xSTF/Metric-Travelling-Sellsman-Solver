@@ -1,9 +1,10 @@
 class Vertex(object):
     def __init__(self, node):
         self.id = node
-        self.neighbor = {}      # key: vertex, value: weight
+        self.neighbor = {}  # key: vertex, value: weight
         self.home = False
         self.dropOff = False
+        self.Src = False
 
     def __str__(self):
         return str(self.id)
@@ -29,6 +30,12 @@ class Vertex(object):
     def isDropOff(self):
         return self.dropOff
 
+    def makeSrc(self):
+        self.Src = True
+
+    def isSrc(self):
+        return self.Src
+
     def addNeighbor(self, node, weight):
         for i in self.neighbor.keys():
             if i == node:
@@ -39,9 +46,10 @@ class Vertex(object):
     def getNeighbor(self):
         return self.neighbor
 
+
 class Graph(object):
     def __init__(self):
-        self.vet_list = {}      # key: vertex id, value: vertex
+        self.vet_list = {}  # key: vertex id, value: vertex
         self.size = 0
 
     def addVertex(self, node):
@@ -85,7 +93,10 @@ class Graph(object):
         return its id
         """
         v = self.getVertex(node)
+        if v.isSrc():
+            return None
         if len(v.getNeighbor()) == 0:
+            print("kuige niubi")
             return v.getID()
         for key in v.getNeighbor().keys():
             incident_v = key
@@ -93,7 +104,7 @@ class Graph(object):
         incident_v.getNeighbor().pop(v)
         self.vet_list.pop(node)
         self.size -= 1
-        if incident_v.isLeaf() and (not incident_v.isHome()) and (not incident_v.isDropOff):
+        if incident_v.isLeaf() and (not incident_v.isHome()) and (not incident_v.isDropOff()) and (not incident_v.isSrc()):
             return self.deleteLeaf(incident_v.getID())
         else:
             incident_v.makeDropOff()
