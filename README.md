@@ -59,8 +59,3 @@ Give an example
 See also the list of [contributors](https://cs170.org/staff/) - CS170 UC Berkeley Course Stuff and instrcutors
 
 
-## Acknowledgments
-
-* Hat tip to anyone whose code was used
-* Inspiration
-* etc
