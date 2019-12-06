@@ -79,10 +79,12 @@ def drop_off(min_tree, list_of_locations):
         if min_tree.getVertex(drop_loc).isHome():
             print("current dict: ", d)
             d[drop_loc].add(drop_loc)
+    for key in d.keys():
+        d[key] = list(d[key])
     return min_tree, d
 
 
-def pre_order(tree, src, path):   # src: vertex id
+def pre_order(tree, src, path):  # src: vertex id
     v = tree.getVertex(src)
     path.append(src)
     for n in v.getNeighbor().keys():
@@ -91,10 +93,29 @@ def pre_order(tree, src, path):   # src: vertex id
     return
 
 
-def parse_path(mst1, path1):
-    return []
-
-
+def parse_path(graph, path1):
+    final_path = []
+    starting_index = path1[0]
+    final_path.append(starting_index)
+    while len(path1) > 1:
+        first = path1[0]
+        second = path1[1]
+        vfirst = graph.getVertex(first)
+        vsecond = graph.getVertex(second)
+        if vsecond in vfirst.getNeighbor().keys():
+            final_path.append(second)
+            path1.pop(0)
+        else:
+            path, weight = dijsktra(graph, first, [second])
+            path.pop()
+            while len(path) > 0:
+                final_path.append(path.pop())
+            path1.pop(0)
+    lastpath, weight = dijsktra(graph, path1[0], [starting_index])
+    lastpath.pop()
+    while len(lastpath) > 0:
+        final_path.append(lastpath.pop())
+    return final_path
 
 
 """

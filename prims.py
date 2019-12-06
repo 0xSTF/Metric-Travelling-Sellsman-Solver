@@ -109,5 +109,7 @@ if __name__ == '__main__':
     mst, dropoff = drop_off(mst, range(11))
     print(mst)
     print(dropoff)
-    p = pre_order(mst, 0)
+    path = []
+    pre_order(mst, 0, path)
+    p = parse_path(g, path)
     print(p)
