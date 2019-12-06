@@ -48,9 +48,9 @@ def recover_graph(list_of_locations, list_of_homes, adjacency_matrix):
         if list_of_locations[i] in list_of_homes:
             g.getVertex(i).makeHome()
     for i in range(len(list_of_locations)):
-        for j in range(len(adjacency_matrix[i])):
+        for j in range(len(list_of_locations)):
             w = adjacency_matrix[i][j]
-            if w != 'x' and g.getEdgelen(i, j) != 'x':
+            if w != 'x':
                 g.addEdge(i, j, w)
     return g
 
@@ -77,7 +77,7 @@ def drop_off(min_tree, list_of_locations):
             d[drop_loc] = set()
         d[drop_loc].add(l)
         if min_tree.getVertex(drop_loc).isHome():
-            print("current dict: ", d)
+            # print("current dict: ", d)
             d[drop_loc].add(drop_loc)
     for key in d.keys():
         d[key] = list(d[key])
