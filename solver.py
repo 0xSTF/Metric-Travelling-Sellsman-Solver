@@ -31,9 +31,11 @@ def solve(list_of_locations, list_of_homes, starting_car_location, adjacency_mat
         NOTE: both outputs should be in terms of indices not the names of the locations themselves
     """
     graph = recover_graph(list_of_locations, list_of_homes, adjacency_matrix)
-    mst1 = prims(graph, starting_car_location)
+    starting_index = list_of_locations.index(starting_car_location)
+    mst1 = prims(graph, starting_index)
     mst2, d = drop_off(mst1, list_of_locations)
-    path1 = pre_order(mst2, starting_car_location)
+    path1 = []
+    pre_order(mst2, starting_index, path1)
     path2 = parse_path(graph, path1)  # input graph or mst1 or mst 2 or doesn't matter?
     return path2, d
 
