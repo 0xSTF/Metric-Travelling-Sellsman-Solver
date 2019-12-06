@@ -30,16 +30,16 @@ def solve(list_of_locations, list_of_homes, starting_car_location, adjacency_mat
         A dictionary mapping drop-off location to a list of homes of TAs that got off at that particular location
         NOTE: both outputs should be in terms of indices not the names of the locations themselves
     """
-    g = recoverGraph(list_of_locations, list_of_homes, adjacency_matrix)
-    mst1 = prims(g, starting_car_location)
-    mst2, d = dropOff(mst1, list_of_locations)
-    visited = []
-
-    return d
+    graph = recover_graph(list_of_locations, list_of_homes, adjacency_matrix)
+    mst1 = prims(graph, starting_car_location)
+    mst2, d = drop_off(mst1, list_of_locations)
+    path1 = pre_order(mst2, starting_car_location)
+    path2 = parse_path(graph, path1)  # input graph or mst1 or mst 2 or doesn't matter?
+    return path2, d
 
 
 # adj matrix is a 2d list
-def recoverGraph(list_of_locations, list_of_homes, adjacency_matrix):
+def recover_graph(list_of_locations, list_of_homes, adjacency_matrix):
     g = Graph()
     for i in range(len(list_of_locations)):
         g.addVertex(i)
@@ -53,7 +53,7 @@ def recoverGraph(list_of_locations, list_of_homes, adjacency_matrix):
     return g
 
 
-def dropOff(mst, list_of_locations):
+def drop_off(min_tree, list_of_locations):
     """
     takes in a graph and outputs:
         1. a reduced graph
@@ -64,28 +64,37 @@ def dropOff(mst, list_of_locations):
     """
     leaf_nodes = []
     for l in range(len(list_of_locations)):
-        if mst.getVertex(l) and mst.getVertex(l).isLeaf():
+        if min_tree.getVertex(l) and min_tree.getVertex(l).isLeaf():
             leaf_nodes.append(l)
     # or leaf_nodes = [i for i in range(len(list_of_homes)) if mst.getVertex(i).isLeaf]
     # assuming that all leaves must be home
     d = {}
     for l in leaf_nodes:
-        drop_loc = mst.deleteLeaf(l)
+        drop_loc = min_tree.deleteLeaf(l)
         if drop_loc not in d.keys():
             d[drop_loc] = set()
         d[drop_loc].add(l)
-        if mst.getVertex(drop_loc).isHome():
+        if min_tree.getVertex(drop_loc).isHome():
             print("current dict: ", d)
             d[drop_loc].add(drop_loc)
-    return mst, d
+    return min_tree, d
 
 
-def dfs(visited, graph, node, path):
-    path.append(node)
-    if node not in visited:
-        visited.append(node)
-        for neighbour in graph[node]:
-            dfs(visited, graph, neighbour)
+def pre_order(tree, src):   # src: vertex id
+    path = []
+    v = tree.getVertex(src)
+    path.append(src)
+    for n in v.getNeighbor().keys():
+        if n.getID() not in path:
+            pre_order(tree, n.getID())
+    return path
+
+
+def parse_path(mst1, path1):
+    return []
+
+
+
 
 """
 ======================================================================

@@ -55,7 +55,7 @@ class Graph(object):
 
     def getVertex(self, node):
         if node not in self.vet_list.keys():
-            return 0
+            return False
         return self.vet_list[node]
 
     def getVertexNeighbor(self, node):
