@@ -5,11 +5,19 @@ This project solves a metric TSP problem on incomplete graphs with approximation
 
 ## Getting Started
 
-These instructions will get you a copy of the project up and running on your local machine for development and testing purposes. See deployment for notes on how to deploy the project on a live system.
+These instructions will get you a copy of the project up and running on your local machine for development and testing purposes. 
+
+
 
 ### Prerequisites
 
-What things you need to install the software and how to install them
+Interpreter you need to deploy
+
+```
+Python 3.7.0 or higher
+```
+
+Packages and libraries you need to install
 
 ```
 pip/pip3
@@ -19,6 +27,14 @@ HeapDict 1.0.1 or higher
 Numpy 1.17.4 or higher
 Decorator 4.4.1. or higher
 ```
+
+The below instructions are narrated in terms of PyCharm CE 2019.1.3 functionalities. So it would only make sense if you have 
+
+```
+PyCharm 2019.1.3 (Community Edition)
+```
+
+installed on your local machine, or its profesional version counterpart. 
 
 ### Installing
 
