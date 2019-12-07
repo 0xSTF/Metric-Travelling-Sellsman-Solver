@@ -61,7 +61,7 @@ So to run the tests, first open the project with PyCharm, then go to **"Edit Con
 
 ```
 Name: solver
-      --------
+     --------
 ```
 
 and in text box **Parameters:______"** type in as below
@@ -71,7 +71,7 @@ Parameters: --all inputs outputs
           --------------------------
 ```
 
-As a result the program will run all **.in** files in **inputs/** directory and put corresponding results in **outputs/** directory, in **.out** format.
+As a result the program will run all **.in** files in **inputs/** directory and put corresponding results in **outputs/** directory, in **.out** format, by executing the main function in [solver.py](solver.py), activating [output_validator.py](output_validator.py.py)
 
 ## Authors
 
