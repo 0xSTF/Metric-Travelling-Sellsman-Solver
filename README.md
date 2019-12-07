@@ -71,7 +71,9 @@ Parameters: --all inputs outputs
           --------------------------
 ```
 
-As a result the program will run all **.in** files in **inputs/** directory and put corresponding results in **outputs/** directory, in **.out** format, by executing the main function in [solver.py](solver.py), activating [output_validator.py](output_validator.py.py)
+As a result the program will run all **.in** files in [inputs/](inputs/) directory and put corresponding results in [outputs/](outputs/) directory, in **.out** format, by executing the main function in [solver.py](solver.py), activating [output_validator.py](output_validator.py.py)
+
+To this point, you should be able to interpret the data in [outputs/](outputs/) freely
 
 ## Authors
 
