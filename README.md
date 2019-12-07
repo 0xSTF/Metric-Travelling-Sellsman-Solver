@@ -13,7 +13,7 @@ Type
 git clone https://github.com/StefStroke/Metric-Travelling-Sellsman-Solver.git
 ```
 
-in your local repository. Then you should have the project source code fully clone on your computer. There is no starter branch, and no unauthorized contributers and change the remote branch.
+in your local repository. Then you should have the project source code fully clone on your computer. There is no starter branch, and no unauthorized contributers can change the remote branch.
 
 ## Prerequisites
 
@@ -40,7 +40,7 @@ The below instructions are narrated in terms of PyCharm CE 2019.1.3 functionalit
 PyCharm 2019.1.3 (Community Edition)
 ```
 
-installed on your local machine, or its profesional version counterpart. 
+installed on your local machine, or its professional counterpart. 
 
 ## Running the tests
 
@@ -71,7 +71,16 @@ Parameters: --all inputs outputs
           --------------------------
 ```
 
-As a result the program will run all **.in** files in [inputs/](inputs/) directory and put corresponding results in [outputs/](outputs/) directory, in **.out** format, by executing the main function in [solver.py](solver.py), activating [output_validator.py](output_validator.py.py)
+To run it on the command line directly, type
+
+```
+python solver.py --all inputs outputs
+          --------------------------
+```
+
+As a result, the program will run all **.in** files in [inputs/](inputs/) directory and put corresponding results in [outputs/](outputs/) directory in **.out** format by executing the main function in [solver.py](solver.py). 
+
+You can then run [output_validator.py](output_validator.py.py) to validate the result and it will print out the driving cost and walking cost respectively
 
 To this point, you should be able to interpret the data in [outputs/](outputs/) freely
 
