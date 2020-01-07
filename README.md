@@ -1,4 +1,4 @@
-# Fall-2019-CS170-UCBerkeley-Project
+# A MODIFIED VERSION OF THE METRIC TSP PROBLEM
 
 This project solves a metric TSP problem on incomplete graphs with approximation factor of 2.0 (usually better empirically), by deploying an MST based approach. 
 * [Link to project spec:](https://cs170.org/assets/project/spec.pdf) - read  section **"Problem Statement"** before importing
